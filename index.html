@@ -3,193 +3,232 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Belo Vidro</title>
+
   <style>
-    :root {
-      --verde-escuro: #194E4A;
-      --verde-claro: #B5C393;
-      --marrom: #8A6B4F;
-      --fundo: #faf7f7;
-    }* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  :root {
+    --verde-escuro: #194E4A;
+    --verde-claro: #B5C393;
+    --marrom: #8A6B4F;
+    --fundo: #faf7f7;
+  }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: var(--fundo);
-  color: var(--verde-escuro);
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-header {
-  background-color: var(--verde-escuro);
-  padding: 20px 50px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--fundo);
+    color: var(--verde-escuro);
+  }
 
-.logo {
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-}
+  header {
+    background-color: var(--verde-escuro);
+    padding: 20px 5vw;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
 
-nav a {
-  color: #f0efef;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
-}
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
 
-.banner {
-  margin-top: 80px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-}
+  nav a {
+    color: #f0efef;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
 
-.banner img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  display: block;
-}
+  .banner {
+    margin-top: 80px;
+    height: 50vh;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+  }
 
-.container {
-  padding: 60px 50px;
-  max-width: 1200px;
-  margin: auto;
-}
+  .banner img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    display: block;
+  }
 
-.section-title {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #111;
-  text-align: center;
-}
-.home {
-  display: center;
-  grid-template-columns: auto;
-  gap: 10px;
+  .container {
+    padding: 60px 5vw;
+    max-width: 1200px;
+    margin: auto;
+  }
 
-}
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
+  .section-title {
+    font-size: 2em;
+    margin-bottom: 2%;
+    color: #111;
+    text-align: center;
+  }
 
-.service-card {
-  background-color: var(--verde-escuro);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-}
+  .home {
+    display: block;
+  }
 
-.service-card img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: cover;
-  border-radius: 6px;
-}
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
 
-.galeria {
-  text-align: center;
-  padding: 40px 20px;
-}
+  .service-card {
+    background-color: var(--verde-escuro);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
 
-.galeria img {
-  width: 300px;
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+  .service-card img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
 
-.contato {
-  padding: 40px 20px;
-  background-color: #ffffff;
-  max-width: 600px;
-  margin: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+  .galeria {
+    text-align: center;
+    padding: 40px 20px;
+  }
 
-.contato h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
+  .galeria img {
+    width: 90%;
+    max-width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
 
-.contato form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  .contato {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
 
-.contato input, .contato textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+  .contato h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-.contato button {
-  background-color: var(--verde-escuro);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}    
-.instagram{
-  position: fixed;
-  bottom: 90px;
-  right: 25px;
-  background-color: #E4405F;
-  color: white;
-  border-radius: 40%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  font-size: 40px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgb(245, 245, 245);
-}
-.whatsapp {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #25D366;
-  color: white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  font-size: 40px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-}
+  .contato form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-footer {
-  background: #222;
-  color: #ccc;
-  padding: 30px 50px;
-  text-align: center;
-  margin-top: 40px;
-}
+  .contato input, .contato textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
+  .contato button {
+    background-color: var(--verde-escuro);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .instagram, .whatsapp {
+    position: fixed;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+  }
+
+  .instagram {
+    bottom: 90px;
+    background-color: #E4405F;
+    color: white;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+ .instagram img{
+    width: 90%;
+    height:90%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .whatsapp {
+    bottom: 25px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+  }
+  .whatsapp img{
+    width: 90%;
+    height:90%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  footer {
+    background: #222;
+    color: #ccc;
+    padding: 30px 5vw;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  /* MEDIA QUERY - AJUSTES PARA CELULAR */
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    nav {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 10px 10px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .section-title {
+      font-size: 1.5em;
+    }
+
+    .contato {
+      padding: 30px 10px;
+    }
+  }
   </style>
 </head>
 <body>  <header>
