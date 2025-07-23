@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Belo Vidro</title>
-
+<!-- fica os estilos, mas posso criar outra pagina só com eles e referenciar depois-->
   <style>
   :root {
     --verde-escuro: #194E4A;
@@ -269,6 +269,7 @@ nav a:hover {
   </style>
 </head>
 <body>  <header>
+  <!-- as opições do navegador e o layout primario-->
     <div class="logo"><strong>BELO VIDRO</strong></div>
     <nav>
       <a href="index.html">Home</a>
@@ -285,8 +286,12 @@ nav a:hover {
    A  Vidraçaria Belo vidro traz para dentro do seu lar não só o melhor do sol,
    <br>o bem-estar e a beleza da luz natural,mas também o requinte e a qualidade com o menor preço..</p>
   </section>  <section id="servicos" class="container">
+
+    <!-- onde fica os cartões de serviço, com imagem e descrição -->
     <h2 class="section-title">Nossos Serviços</h2>
     <div class="services">
+
+
       <div class="service-card">
         <img src="vidro temperDO EXEMPLO.webp" alt="Vidro">
         <h3>Vidros Temperados</h3>
@@ -332,6 +337,7 @@ nav a:hover {
         </p>
       </div>
     </div>
+    <!-- imagens da galeria -->
   </section>  <section class="galeria">
     <h2 class="section-title">Galeria de Projetos</h2>
     <img src="p4.jpg" alt="Projeto 1">
@@ -348,12 +354,19 @@ nav a:hover {
      <img src="IMG-20220804-WA0011.jpg" alt="Projeto 8">
   </section>  <section class="contato" id="contato">
     <h2>Solicite um Orçamento</h2>
-    <form>
-      <input type="text" placeholder="Seu nome" required>
-      <input type="email" placeholder="Seu e-mail" required>
-      <textarea placeholder="Descreva seu projeto ou dúvidas..." rows="5" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+
+<!-- resposansavel pelo contato, fazendo com que seja possivel vir o gmail para cá -->
+<form action="https://formsubmit.co/Belovidro699@gmail.com" method="POST">
+  <input type="text" name="nome" placeholder="Seu nome" required>
+  <input type="email" name="email" placeholder="Seu e-mail" required>
+  <textarea name="mensagem" placeholder="Descreva seu projeto ou dúvidas..." rows="5" required></textarea>
+
+  <!-- Desativa CAPTCHA e define página de agradecimento -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value=""> <!-- ou altere para sua home ou outra página -->
+
+  <button type="submit">Enviar</button>
+</form>
      <div class="instagram">
     <a href="https://instagram.com/belovidro" target="_blank" aria-label="Nos acompanhe no Instagram">
       <i class="fab fa-instagram"></i>
