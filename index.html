@@ -44,13 +44,18 @@
   }
 
   nav a {
-    color: #f0efef;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 1rem;
-  }
+  color: #f0efef;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
 
+nav a:hover {
+  color: var(--verde-claro); /* ou outra cor de destaque */
+  transform: scale(1.2);
+}
   .banner {
     margin-top: 80px;
     height: 50vh;
@@ -106,7 +111,14 @@
     object-fit: cover;
     border-radius: 6px;
   }
+ .service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.service-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
   .galeria {
     text-align: center;
     padding: 40px 20px;
@@ -119,7 +131,14 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
+ .galeria img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.galeria img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+} 
   .contato {
     padding: 40px 20px;
     background-color: #ffffff;
@@ -154,6 +173,13 @@
     border-radius: 5px;
     cursor: pointer;
   }
+     .contato button{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contato button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
 
   .instagram, .whatsapp {
     position: fixed;
@@ -168,7 +194,18 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     z-index: 1000;
   }
+      .instagram, .whatsapp{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.instagram:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+} 
+.whatsapp:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+} 
   .instagram {
     bottom: 90px;
     background-color: #E4405F;
