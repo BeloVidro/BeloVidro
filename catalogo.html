@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Catálogo - Belo Vidro</title>
+  <!-- Favicon padrão -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<!-- Apple -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Android -->
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+
+<!-- Manifesto -->
+<link rel="manifest" href="site.webmanifest">
+
+
+
+  <style>
+    @media print {
+      .page {
+        page-break-after: always;
+      }
+    }
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background:#e4e7e3;;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      padding: 20mm;
+      position: relative;
+      box-sizing: border-box;
+    }
+/* Barra do topo */
+.top-bar {
+    position: absolute;
+  top: 0;
+  left: 0;
+  width: 88%;
+  height: 28px;
+  background: linear-gradient(to bottom, #76c464 0%, #559b46 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset 0 1px 2px rgba(124, 117, 117, 0.4),   /* brilho superior interno */
+    inset 0 -2px 3px rgba(0, 0, 0, 0.1),        /* sombra inferior interna */
+    0 2px 5px rgba(0, 0, 0, 0.15);              /* sombra externa leve */
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.top-bar h1 {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);  /* leve relevo no texto */
+  margin: 0;
+}
+
+
+.top-bar h1 {
+  color: white;
+  font-size: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+/* Quadrados decorativos no topo */
+.corner-squares {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: 100;
+}
+
+.corner-squares .square {
+  position: absolute;
+  border-radius: 4px;
+  opacity: 0.9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo e posição de cada quadrado */
+.square1 {
+  width: 50px;
+  height: 50px;
+  background-color: #6FC35C;
+  top: 0px;
+  right: 40px;
+}
+
+.square2 {
+  width: 28px;
+  height: 28px;
+  background-color: #004d40;
+  top: 30px;
+  right: 105px;
+}
+
+.square3 {
+  width: 40px;
+  height: 40px;
+  background-color: #8DC891;
+  top: 70px;
+  right: 75px;
+}
+
+.square4 {
+  width: 35px;
+  height: 35px;
+  background-color: #18201a;
+  top: 55px;
+  right: 20px;
+}
+
+
+ .bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background: linear-gradient(to top, #6FC35C 0%, #5AAE4B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 25px;
+  border-radius: 12px 12px 0 0;
+  z-index: 10;
+
+  /* Efeito 3D com sombras */
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+    0 -2px 5px rgba(0, 0, 0, 0.15);
+}
+
+
+    .page-number {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .section-title[contenteditable="true"]:hover {
+  outline: 1px dashed #fffdfd;
+  cursor: text;
+}
+   h2.section-title {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #6FC35C;
+  color: white;
+  border-radius: 0 25px 25px 0;
+  padding: 8px 25px;
+  margin: 70px 0 20px;
+  font-size: 20px;
+  display: inline-block;
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%);
+}
+
+      .produto {
+  display: flex;
+  flex-wrap: wrap; /* permite quebra de linha */
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+}
+
+    .produto img {
+  max-width: 100%;
+  max-height: 190px; /* altura limite antes de "empurrar" */
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  flex: 1 1 150px;
+}
+
+
+
+
+    .produto input[type="file"] {
+      margin-bottom: 8px;
+    }
+
+    .produto-info h3 {
+      margin: 0 0 5px;
+      color: #5d3a00;
+      background: #ffffff;
+    }
+
+    .produto-info p {
+      margin: 0;
+      color: #333;
+      background: #ffffff;
+    }
+
+    #downloadBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #004d40;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1000;
+    }
+
+
+    .produto > div:first-child {
+  order: 2; /* imagem */
+}
+
+.produto > .produto-info {
+  order: 1; /* texto */
+  flex: 1 1 200px;
+}
+.linha-separadora {
+  width: 100%;
+  background-color: #6FC35C; /* Verde claro */
+  margin: 15px 0;
+  background: linear-gradient(to right, #6FC35C, #004d40);
+
+}
+
+@media (max-width: 768px) {
+  .page {
+    width: 100vw;
+    height: auto;
+    padding: 15px;
+  }
+
+  .produto {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .produto img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .produto-info {
+    width: 100%;
+  }
+
+  h2.section-title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .top-bar,
+  .bottom-bar {
+    width: 100%;
+    font-size: 14px;
+    padding-left: 10px;
+    justify-content: center;
+  }
+
+  .page-number {
+    font-size: 14px;
+  }
+}
+#btnVoltar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 128, 0, 0.6); /* só para ficar visível, pode ajustar ou deixar transparente */
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+  /* Se quiser invisível mesmo, use background: transparent e sem texto */
+}
+
+/* Esconde no PDF/print */
+@media print {
+  #btnVoltar {
+    display: none !important;
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+
+<button id="downloadBtn">Baixar PDF</button>
+
+
+
+<div style="margin: 10px 20px;">
+  <label>
+    <input type="checkbox" id="toggleLinha" checked>
+    Mostrar linha entre produtos
+  </label>
+  <label style="margin-left: 20px;">
+    Espessura da linha (px): 
+    <input type="number" id="espessuraLinha" min="1" max="10" value="1" style="width: 50px;">
+  </label>
+</div>
+
+<div id="catalogo">
+
+  <!-- Página 1 -->
+  <div class="page">
+    <div class="top-bar"></div>
+     <div class="corner-squares">
+  <div class="square square1"></div>
+  <div class="square square2"></div>
+  <div class="square square3"></div>
+  <div class="square square4"></div>
+     </div>
+    <div class="bottom-bar"><div class="page-number">01</div></div>
+   
+
+
+    <h2 class="section-title" contenteditable="true">Vidros Temperados</h2>
+
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="Janela de Vidro" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;">Vidro temperado, ideal para ambientes internos e externos. Opções de vidro liso ou canelado.</textarea>
+      </div>
+    </div>
+
+<div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="Janela de Vidro" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;">Vidro temperado, ideal para ambientes internos e externos. Opções de vidro liso ou canelado.</textarea>
+      </div>
+    </div>
+
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="Porta de Vidro" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;">Portas sob medida com acabamento em alumínio e fechaduras de qualidade.</textarea>
+      </div>
+    </div>
+     <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;"></textarea>
+      </div>
+    </div>
+     <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;"></textarea>
+      </div>
+    </div>
+     <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input ty" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;"></textarea>
+      </div>
+    </div>
+
+
+<div class="bottom-bar">
+  <span style="color: white; font-size: 14px; font-weight: 500;">
+    Catálogo Belo Vidro •
+  </span>
+</div>
+
+  </div>
+
+  <!-- Página 2 -->
+  <div class="page">
+    <div class="top-bar"></div>
+
+    <div class="corner-squares">
+  <div class="square square1"></div>
+  <div class="square square2"></div>
+  <div class="square square3"></div>
+</div>
+    <div class="bottom-bar"><div class="page-number">02</div></div>
+
+    <h2 class="section-title" contenteditable="true">Esquadrias de Alumínio</h2>
+
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="Janela de Alumínio" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;">Durabilidade e leveza. Disponível em branco, preto ou bronze com vidro incluso.</textarea>
+      </div>
+    </div>
+
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="Porta de Alumínio" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;">Modelo de abrir ou correr. Ideal para entradas e áreas externas.</textarea>
+      </div>
+    </div>
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;"></textarea>
+      </div>
+    </div>
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;"></textarea>
+      </div>
+    </div>
+    <div class="produto">
+      <div>
+        <input type="file" accept="image/*" onchange="previewImage(this)" style="display: block;">
+        <img src="" alt="Prévia da imagem" style="display: none;">
+      </div>
+      <div class="produto-info">
+        <input type="text" value="" style="font-weight:bold; font-size:16px; color:#5d3a00; border:none; width:100%;">
+        <textarea rows="3" style="width:100%; border:none; resize:none; color:#333;"></textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  // Preview da imagem
+  function previewImage(input) {
+    const file = input.files[0];
+    const img = input.nextElementSibling;
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        img.src = e.target.result;
+        img.style.display = 'block';
+        input.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    } else {
+      img.src = '';
+      img.style.display = 'none';
+    }
+  }
+
+  // Remover produtos vazios
+  function removerProdutosVazios(container) {
+    const produtos = container.querySelectorAll('.produto');
+    produtos.forEach(produto => {
+      const img = produto.querySelector('img');
+      const titulo = produto.querySelector('input[type="text"]');
+      const descricao = produto.querySelector('textarea');
+
+      const temImagem = img && img.src && img.style.display !== 'none';
+      const temTitulo = titulo && titulo.value.trim() !== "";
+      const temDescricao = descricao && descricao.value.trim() !== "";
+
+      if (!temImagem && !temTitulo && !temDescricao) {
+        produto.remove();
+      }
+    });
+  }
+
+  // Adicionar/remover linhas no DOM principal (na tela)
+  function atualizarLinhas() {
+    const mostraLinha = document.getElementById('toggleLinha').checked;
+    const espessura = parseInt(document.getElementById('espessuraLinha').value, 10) || 1;
+
+    // Remove linhas antigas
+    document.querySelectorAll('.linha-separadora').forEach(linha => linha.remove());
+
+    if (!mostraLinha) return;
+
+    document.querySelectorAll('.page').forEach(page => {
+      const produtos = page.querySelectorAll('.produto');
+      produtos.forEach((produto, index) => {
+        if (index === produtos.length - 1) return;
+
+        const linha = document.createElement('div');
+        linha.className = 'linha-separadora';
+        linha.style.height = espessura + 'px';
+        produto.insertAdjacentElement('afterend', linha);
+      });
+    });
+  }
+
+  // Eventos para atualizar as linhas ao mudar opções
+  document.getElementById('toggleLinha').addEventListener('change', atualizarLinhas);
+  document.getElementById('espessuraLinha').addEventListener('input', atualizarLinhas);
+
+  // Chamada inicial
+  atualizarLinhas();
+
+  // Geração do PDF
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    window.scrollTo(0, 0); // Vai para o topo
+
+    const original = document.getElementById('catalogo');
+    const clone = original.cloneNode(true);
+
+    removerProdutosVazios(clone);
+
+    // Reaplicar linhas no clone se estiver ativado
+    const mostraLinha = document.getElementById('toggleLinha').checked;
+    const espessura = parseInt(document.getElementById('espessuraLinha').value, 10) || 1;
+
+    if (mostraLinha) {
+      clone.querySelectorAll('.linha-separadora').forEach(linha => linha.remove());
+
+      clone.querySelectorAll('.page').forEach(page => {
+        const produtos = page.querySelectorAll('.produto');
+        produtos.forEach((produto, index) => {
+          if (index === produtos.length - 1) return;
+          const linha = document.createElement('div');
+          linha.className = 'linha-separadora';
+          linha.style.height = espessura + 'px';
+          linha.style.backgroundColor = '#6FC35C';
+          linha.style.width = '100%';
+          linha.style.margin = '15px 0';
+          produto.insertAdjacentElement('afterend', linha);
+        });
+      });
+    }
+
+    // PDF invisível temporário
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'fixed';
+    tempContainer.style.top = '-9999px';
+    tempContainer.appendChild(clone);
+    document.body.appendChild(tempContainer);
+
+    html2pdf().set({
+      margin: 0,
+      filename: 'catalogo-belo-vidro.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).from(clone).save().then(() => {
+      document.body.removeChild(tempContainer);
+    });
+  });
+
+  document.getElementById('btnVoltar').addEventListener('click', () => {
+  window.location.href = "sitebelo.html"; // Coloque o link do site principal aqui
+});
+
+</script>
+<button id="btnVoltar" title="Voltar ao site principal"><img src="favicon.ico" alt="belovidro"></button>
+
+
+</body>
+</html>

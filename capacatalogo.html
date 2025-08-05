@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Catálogo Belo Vidro - Entrada</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #e4e7e3, #cce0d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+    }
+
+    .capa {
+      width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .capa:hover {
+      transform: scale(1.02);
+    }
+
+    .botao-mais {
+      position: absolute;
+      top: 50%;
+      right: -60px;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: #004d40;
+      color: white;
+      font-size: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .botao-mais:hover {
+      background-color: #00695c;
+    }
+
+    .instrucoes {
+      margin-top: 20px;
+      color: #444;
+      font-size: 16px;
+    }
+
+    .modal-livro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .pagina-modal {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+    }
+
+    .pagina-modal h2 {
+      color: #004d40;
+      margin-bottom: 20px;
+    }
+
+    .pagina-modal button {
+      display: block;
+      width: 100%;
+      background-color: #6FC35C;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .pagina-modal button:hover {
+      background-color: #559b46;
+    }
+
+    .voltar-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .voltar-btn:hover {
+      background-color: #bbb;
+    }
+
+    .catalogo-imagens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.catalogo-imagens img {
+  width: 130px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.catalogo-imagens img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 600px) {
+  .pagina-modal {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .catalogo-imagens img {
+    width: 100px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img
+      src="belo vidro desiner.png"
+      alt="Capa do Catálogo"
+      class="capa"
+      onclick="abrirModalLivro()"
+    />
+
+    <div class="botao-mais" onclick="irParaFerramenta()">+</div>
+
+    <div class="instrucoes">
+      Clique na capa para escolher uma folha do catálogo ou no + para criar uma folha personalizada
+    </div>
+  </div>
+
+  <!-- Modal com efeito de livro -->
+  <div class="modal-livro" id="modalLivro">
+    <div class="pagina-modal">
+      <h2>Escolha um catálogo:</h2>
+<div class="catalogo-imagens">
+  <img src="imagens/vidros-thumb.jpg" alt="Catálogo Vidros" onclick="abrirPDF('catalogos/vidros.pdf')" />
+  <img src="imagens/esquadrias-thumb.jpg" alt="Catálogo Esquadrias" onclick="abrirPDF('catalogos/esquadrias.pdf')" />
+  <img src="imagens/espelhos-thumb.jpg" alt="Catálogo Espelhos" onclick="abrirPDF('catalogos/espelhos.pdf')" />
+</div>
+
+      <button class="voltar-btn" onclick="fecharModal()">← Voltar</button>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+  function abrirModalLivro() {
+    const modal = document.getElementById('modalLivro');
+    modal.style.display = 'flex';
+
+    // Animação da "virada de página"
+    anime({
+      targets: '.pagina-modal',
+      rotateY: [-90, 0],
+      opacity: [0, 1],
+      easing: 'easeOutExpo',
+      duration: 800
+    });
+
+    // Animação da entrada dos botões
+    anime({
+      targets: '.pagina-modal button',
+      opacity: [0, 1],
+      translateY: [30, 0],
+      delay: anime.stagger(100, { start: 500 }),
+      easing: 'easeOutQuad',
+      duration: 600
+    });
+  }
+
+  function fecharModal() {
+    document.getElementById('modalLivro').style.display = 'none';
+  }
+
+  function abrirPDF(caminho) {
+    window.open(caminho, '_blank');
+  }
+
+  function irParaFerramenta() {
+    window.location.href = "catalogo.html"; // ← Altere para o caminho correto da ferramenta
+  }
+
+  // Animação do botão +
+  anime({
+    targets: '.botao-mais',
+    scale: [1, 1.2],
+    duration: 1000,
+    direction: 'alternate',
+    loop: true,
+    easing: 'easeInOutQuad'
+  });
+</script>
+
+
+</body>
+
+</html>
