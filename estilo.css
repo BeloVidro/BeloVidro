@@ -1,0 +1,480 @@
+:root {
+    --verde-escuro: #194E4A;
+    --verde-claro: #B5C393;
+    --marrom: #8A6B4F;
+    --fundo: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--fundo);
+    color: var(--verde-escuro);
+}
+
+header {
+    background-color: var(--verde-escuro);
+    color: var();
+    padding: 20px 5vw;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    background-color: var();
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav a {
+    color: #f0efef;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--verde-claro);
+    transform: scale(1.2);
+}
+
+#toggle-tema {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--cor-texto);
+    transition: transform 0.3s;
+}
+
+#toggle-tema:hover {
+    transform: scale(1.2);
+}
+
+.banner {
+    margin-top: 80px;
+    height: 50vh;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var();
+}
+
+.banner img {
+    max-width: 150%;
+    max-height: 150%;
+    object-fit: contain;
+    display: block;
+}
+
+.container {
+    padding: 60px 5vw;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 2em;
+    margin-bottom: 2%;
+    color: #2e7d32;
+    text-align: center;
+}
+
+.home {
+    display: block;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--verde-escuro);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.service-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.galeria {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.galeria img {
+    width: 90%;
+    max-width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.contato {
+    padding: 40px 20px;
+    background-color: #ececec;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: green;
+}
+
+.contato h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contato form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contato input,
+.contato textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contato button {
+    background-color: var(--verde-escuro);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contato button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.instagram,
+.whatsapp {
+    position: fixed;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.instagram:hover,
+.whatsapp:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.instagram {
+    bottom: 90px;
+    background-color: #E4405F;
+    color: white;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.instagram img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.whatsapp {
+    bottom: 25px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+}
+
+.whatsapp img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+footer {
+    background: #222;
+    color: #ccc;
+    padding: 30px 5vw;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* MEDIA QUERY - AJUSTES PARA CELULAR */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 10px 10px 0 0;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+    }
+
+    .contato {
+        padding: 30px 10px;
+    }
+}
+
+:root {
+    --cor-bg: #ffffff;
+    --cor-texto: #000000;
+    --cor-secundaria: #e8ece8;
+}
+
+body {
+    background-color: var(--cor-bg);
+    color: var(--cor-texto);
+    transition: all 0.3s ease-in-out;
+}
+
+.dark-mode {
+    --cor-bg: #2c2c2c;
+    --cor-texto: #ffffff;
+    --cor-secundaria: #1f1f1f;
+}
+
+#toggle-tema {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: var(--cor-texto);
+}
+
+.painel-funcionario {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100vh;
+    background-color: #194E4A;
+    color: white;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    z-index: 998;
+}
+
+.painel-funcionario:hover {
+    width: 280px;
+}
+
+.painel-funcionario h3 {
+    display: none;
+}
+
+.painel-funcionario:hover h3 {
+    display: block;
+    padding: 20px;
+    font-size: 20px;
+    border-bottom: 2px solid #a5d6a7;
+    margin: 0;
+}
+
+.painel-funcionario ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.painel-funcionario:hover ul {
+    opacity: 1;
+}
+
+.painel-funcionario a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.painel-funcionario a:hover {
+    color: #a5d6a7;
+}
+
+.painel-funcionario button {
+    background-color: #bcaaa4;
+    color: #000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    width: calc(100% - 40px);
+    display: none;
+}
+
+.painel-funcionario:hover button {
+    display: block;
+}
+
+#modal-login {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+}
+
+#modal-login .login-box {
+    background: white;
+    padding: 20px;
+    max-width: 300px;
+    margin: 120px auto;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+#modal-login input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#modal-login button {
+    background-color: #377e3b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#modal-login button:hover {
+    background-color: #1b5e20;
+}
+
+#erro-login {
+    color: red;
+    margin-top: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2e7d32;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
