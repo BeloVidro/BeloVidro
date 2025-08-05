@@ -1,4 +1,5 @@
-## Hi there 👋
+<meta http-equiv="refresh" content="0; url=index.html">
+
 
 <!--
 **BeloVidro/BeloVidro** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
