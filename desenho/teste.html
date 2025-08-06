@@ -457,6 +457,27 @@ canvas.addEventListener("touchmove", moveDraw);
 canvas.addEventListener("touchend", endDraw);
 
 saveAction();
+
+
+// Detecta se veio com parâmetro 'retorno'
+const params = new URLSearchParams(window.location.search);
+const urlRetorno = params.get("retorno");
+
+// Quando salvar
+function salvarDesenho() {
+  const base64 = canvas.toDataURL("image/png");
+
+  if (urlRetorno) {
+    // Modo integração → volta pro formulário
+    window.location.href = `${urlRetorno}?desenho=${encodeURIComponent(base64)}`;
+  } else {
+    // Modo independente → apenas baixa
+    const link = document.createElement("a");
+    link.href = base64;
+    link.download = "desenho.png";
+    link.click();
+  }
+}
 </script>
 
 </body>
