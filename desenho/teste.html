@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Mini Paint Técnico</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #f9f9f9;
+    padding: 10px 5px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+  }
+.toolbar button img{
+  width: 24px;
+  height: 24px;
+}
+  .toolbar button {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .toolbar button:hover {
+    background-color: #eee;
+    transform: scale(1.05);
+  }
+
+  .toolbar button.active {
+    background-color: #5e8f36;
+    border-color: #5e8f36;
+  }
+
+  #canvas {
+    border: 2px solid green;
+    margin: 20px auto;
+    background: white;
+    touch-action: none;
+    max-width: 100%;
+    margin-left: 80px;
+  }
+
+ #fillPrompt {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 2px solid #888;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  max-width: 90%;
+  text-align: center;
+}
+
+#fillPrompt p {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#fillPrompt button {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.2s;
+}
+
+#fillPrompt button:hover {
+  background-color: #388e3c;
+}
+
+  .radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 10px;
+  }
+
+  .radio-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .toolbar {
+      flex-direction: row;
+      height: auto;
+      width: 100%;
+      justify-content: center;
+      padding: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .toolbar button {
+      width: 42px;
+      height: 42px;
+    }
+
+    #canvas {
+      margin-left: 0;
+      margin-top: 80px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="setTool('brush')" title="Pincel"><img src="pincel.png" alt="Pincel">
+</button>
+<button id="btn-line" title="Reta" onclick="setTool('line')" aria-label="Linha">
+  <svg viewBox="0 0 24 24">
+    <line x1="4" y1="20" x2="20" y2="4" stroke="currentColor" stroke-width="2"/>
+  </svg>
+</button>
+   <button id="btn-rect" title="Retângulo" onclick="setTool('rect')" aria-label="Retângulo">
+    <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+  </button>
+   <button id="btn-circle" title="Círculo" onclick="setTool('circle')" aria-label="Círculo">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+  </button>
+  <button onclick="setTool('text')">Texto</button>
+  <button onclick="setTool('eraser')" title="Borracha"> <img src="boracha.png" alt="Borracha">Borracha</button>
+  <button onclick="confirmShape()">✔</button>
+  <button onclick="undo()">↩</button>
+  <button onclick="clearCanvas()">🗑</button>
+</div>
+
+<canvas id="canvas" width="800" height="500"></canvas>
+
+<div id="fillPrompt">
+  <p>Preencher de azul?</p>
+  <div class="radio-group">
+    <label class="radio-option">
+      <span>Sim</span>
+      <input type="radio" name="fillChoice" value="sim">
+    </label>
+    <label class="radio-option">
+      <span>Não</span>
+      <input type="radio" name="fillChoice" value="nao">
+    </label>
+  </div>
+  <br>
+  <button onclick="confirmFillChoice()">OK</button>
+</div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let tool = 'brush';
+let drawing = false;
+let startX, startY;
+let previewShape = null;
+let fillColor = 'transparent';
+let actions = [];
+let snapshotBeforePreview = null;
+let draggingShape = false;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
+
+const fillPrompt = document.getElementById("fillPrompt");
+
+function setTool(selectedTool) {
+  tool = selectedTool;
+
+  document.querySelectorAll('.toolbar button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  const toolMap = {
+  brush: 0, line: 1, rect: 2, circle: 3, text: 4,
+  eraser: 5, confirm: 6, undo: 7, clear: 8
+  };
+  
+  const index = toolMap[selectedTool];
+  if (index !== undefined) {
+    document.querySelectorAll('.toolbar button')[index].classList.add('active');
+  }
+
+  if (tool === 'rect' || tool === 'circle') {
+    fillPrompt.style.display = "block";
+  }
+}
+function confirmFillChoice() {
+    const choice = document.querySelector('input[name="fillChoice"]:checked');
+    if (choice) {
+        fillColor = choice.value === "sim" ? "rgba(0,0,255,0.3)" : "transparent";
+        fillPrompt.style.display = "none";
+    } else {
+        alert("Escolha uma opção!");
+    }
+}
+
+function getPos(evt) {
+    if (evt.touches) {
+        let rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.touches[0].clientX - rect.left,
+            y: evt.touches[0].clientY - rect.top
+        };
+    } else {
+        return { x: evt.offsetX, y: evt.offsetY };
+    }
+}
+
+function startDraw(evt) {
+    let pos = getPos(evt);
+
+    if (previewShape && isInsideShape(pos.x, pos.y, previewShape)) {
+        draggingShape = true;
+        dragOffsetX = pos.x - previewShape.x;
+        dragOffsetY = pos.y - previewShape.y;
+        evt.preventDefault();
+        return;
+    }
+
+    drawing = true;
+    startX = pos.x;
+    startY = pos.y;
+
+    if (tool === 'brush') {
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        snapshotBeforePreview = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+    else if (tool === 'eraser') {
+        snapshotBeforePreview = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        erase(pos.x, pos.y);
+    }
+    else if (tool === 'text') {
+        let texto = prompt("Digite o texto/medida:");
+        if (texto) {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText(texto, startX, startY);
+            saveAction();
+        }
+        drawing = false;
+    }
+    else {
+        snapshotBeforePreview = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+    evt.preventDefault();
+}
+
+function moveDraw(evt) {
+    let pos = getPos(evt);
+
+    if (draggingShape && previewShape) {
+        previewShape.x = pos.x - dragOffsetX;
+        previewShape.y = pos.y - dragOffsetY;
+        redrawPreview();
+        evt.preventDefault();
+        return;
+    }
+
+    if (!drawing) return;
+
+    if (tool === 'brush') {
+        ctx.lineTo(pos.x, pos.y);
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+    else if (tool === 'eraser') {
+        erase(pos.x, pos.y);
+    }
+ else if (tool === 'line') {
+  ctx.putImageData(snapshotBeforePreview, 0, 0);
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(pos.x, pos.y);
+  ctx.strokeStyle = "black";
+  ctx.stroke();
+  previewShape = { tool, x1: startX, y1: startY, x2: pos.x, y2: pos.y };
+}
+    else if (tool === 'rect' || tool === 'circle') {
+        ctx.putImageData(snapshotBeforePreview, 0, 0);
+        ctx.beginPath();
+        if (tool === 'rect') {
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(startX, startY, pos.x - startX, pos.y - startY);
+            if (fillColor !== 'transparent') {
+                ctx.fillStyle = fillColor;
+                ctx.fillRect(startX, startY, pos.x - startX, pos.y - startY);
+            }
+        } else if (tool === 'circle') {
+            const radius = Math.sqrt((pos.x - startX) ** 2 + (pos.y - startY) ** 2);
+            ctx.arc(startX, startY, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = "black";
+            ctx.stroke();
+            if (fillColor !== 'transparent') {
+                ctx.fillStyle = fillColor;
+                ctx.fill();
+            }
+        }
+        previewShape = { tool, x: startX, y: startY, w: pos.x - startX, h: pos.y - startY, fillColor };
+    }
+    evt.preventDefault();
+
+    
+}
+
+function endDraw() {
+    drawing = false;
+    draggingShape = false;
+}
+
+function erase(x, y) {
+    ctx.clearRect(x - 5, y - 5, 10, 10);
+}
+
+function confirmShape() {
+    if (!previewShape) return;
+    saveAction();
+    previewShape = null;
+}
+
+function saveAction() {
+    actions.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+}
+
+function undo() {
+    if (actions.length > 1) {
+        actions.pop();
+        ctx.putImageData(actions[actions.length - 1], 0, 0);
+    } else if (actions.length === 1) {
+        actions.pop();
+        clearCanvas();
+    }
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    actions = [];
+}
+
+function isInsideShape(mx, my, shape) {
+    if (shape.tool === 'rect') {
+        return mx >= shape.x && mx <= shape.x + shape.w &&
+               my >= shape.y && my <= shape.y + shape.h;
+    } else if (shape.tool === 'circle') {
+        let radius = Math.sqrt(shape.w ** 2 + shape.h ** 2);
+        let dx = mx - shape.x;
+        let dy = my - shape.y;
+        return Math.sqrt(dx * dx + dy * dy) <= radius;
+    }
+    else if (shape.tool === 'line') {
+    // Detecta proximidade do ponto à linha (com margem)
+    const { x1, y1, x2, y2 } = shape;
+    const dist = pointToLineDistance(mx, my, x1, y1, x2, y2);
+    return dist < 5; // margem de erro de 5px
+}
+    return false;
+}
+
+function redrawPreview() {
+    ctx.putImageData(snapshotBeforePreview, 0, 0);
+    ctx.beginPath();
+    if (previewShape.tool === 'rect') {
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(previewShape.x, previewShape.y, previewShape.w, previewShape.h);
+        if (previewShape.fillColor !== 'transparent') {
+            ctx.fillStyle = previewShape.fillColor;
+            ctx.fillRect(previewShape.x, previewShape.y, previewShape.w, previewShape.h);
+        }
+    } else if (previewShape.tool === 'circle') {
+        const radius = Math.sqrt(previewShape.w ** 2 + previewShape.h ** 2);
+        ctx.arc(previewShape.x, previewShape.y, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+        if (previewShape.fillColor !== 'transparent') {
+            ctx.fillStyle = previewShape.fillColor;
+            ctx.fill();
+        }
+
+    }
+    else if (previewShape.tool === 'line') {
+  ctx.beginPath();
+  ctx.moveTo(previewShape.x1, previewShape.y1);
+  ctx.lineTo(previewShape.x2, previewShape.y2);
+  ctx.strokeStyle = "black";
+  ctx.stroke();
+}
+}
+
+function pointToLineDistance(px, py, x1, y1, x2, y2) {
+    const A = px - x1;
+    const B = py - y1;
+    const C = x2 - x1;
+    const D = y2 - y1;
+
+    const dot = A * C + B * D;
+    const len_sq = C * C + D * D;
+    let param = -1;
+    if (len_sq !== 0) param = dot / len_sq;
+
+    let xx, yy;
+
+    if (param < 0) {
+        xx = x1;
+        yy = y1;
+    } else if (param > 1) {
+        xx = x2;
+        yy = y2;
+    } else {
+        xx = x1 + param * C;
+        yy = y1 + param * D;
+    }
+
+    const dx = px - xx;
+    const dy = py - yy;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+canvas.addEventListener("mousedown", startDraw);
+canvas.addEventListener("mousemove", moveDraw);
+canvas.addEventListener("mouseup", endDraw);
+
+canvas.addEventListener("touchstart", startDraw);
+canvas.addEventListener("touchmove", moveDraw);
+canvas.addEventListener("touchend", endDraw);
+
+saveAction();
+</script>
+
+</body>
+</html>
