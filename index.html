@@ -20,7 +20,6 @@
 
 <!-- fica os estilos referenciados-->
 <link rel="stylesheet" href="estilo.css">
-  </style>
 </head>
 <body>  <header>
 
@@ -29,7 +28,7 @@
 
  <div class="menu-container">
   <nav>
-    <a href="index.html">Home</a>
+    <a href="sitebelo.html">Home</a>
     <a href="#sobre">Sobre</a>
     <a href="#servicos">Serviços e projetos</a>
     <a href="#contato">Contato</a>
@@ -137,9 +136,11 @@
   <!-- Configurações adicionais -->
   <input type="hidden" name="_subject" value="Novo orçamento recebido pelo site">
   <input type="hidden" name="_captcha" value="false">
+  <!-- Campo para enviar imagem ou PDF -->
+<input type="file" name="arquivo" id="arquivo" accept="image/*,application/pdf">
+<button type="button" id="btn-desenho">✏️ Fazer um Desenho</button>
   <button type="submit">Enviar</button>
   <input type="hidden" name="_next" value="https://belovidro.github.io/BeloVidro/indexobrigado.html">
-</form>
 </form>
      <div class="instagram">
     <a href="https://instagram.com/belovidro" target="_blank" aria-label="Nos acompanhe no Instagram">
@@ -164,7 +165,6 @@
   <ul>
     <li><a href="catalogo/entrada/capacatalogo.html">Catalogos</a></li>
     <li><a href="gerador de pdf e recibos/testepdf.html">Gerar Recibo</a></li>
-    <li><a href="desenho/teste.html">Desenho</a></li>
     <li><a href="https://sistema.wvetro.com.br/wvetro/app.wvetro.login">Wvetro</a></li>
     <!-- outras ferramentas internas -->
   </ul>
@@ -218,6 +218,31 @@
       painel.style.display = "block";
     }
   };
+
+  // Botão para abrir a tela de desenho
+document.getElementById("btn-desenho").addEventListener("click", () => {
+  const urlRetorno = encodeURIComponent(window.location.href);
+  window.open(`desenho/teste.html?retorno=${urlRetorno}`, "_blank");
+});
+
+// Ao carregar a página, verificar se veio um desenho como parâmetro
+window.addEventListener("load", () => {
+  const params = new URLSearchParams(window.location.search);
+  const arquivoBase64 = params.get("desenho");
+
+  if (arquivoBase64) {
+    fetch(arquivoBase64)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], "desenho.png", { type: blob.type });
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        document.querySelector('input[type="file"]').files = dataTransfer.files;
+      });
+  }
+});
+
+
 </script>
 
 </body>
