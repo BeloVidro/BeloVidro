@@ -1,57 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Recibos</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 20px; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { text-align: center; }
-        label { display: block; margin-top: 10px; }
-        input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
-        button { background-color: #28a745; color: white; padding: 10px 15px; border: none; cursor: pointer; width: 100%; margin-top: 20px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerador de Recibos</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Anime.js para animações -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Gerador de Recibos</h1>
-        <form id="recibo-form">
-            <label for="valor">Valor (Ex: 1500.00):</label>
-            <input type="number" step="0.01" id="valor" required>
+<body class="min-h-screen bg-gradient-to-br from-green-100 to-green-300 flex items-center justify-center p-4">
 
-            <label for="pagador">Recebemos de:</label>
-            <input type="text" id="pagador" required>
+  <!-- Cartão do Formulário -->
+  <div id="form-card" class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 relative z-10 opacity-0 translate-y-10">
 
-            <label for="descricao">Referente a:</label>
-            <textarea id="descricao" rows="3" required></textarea>
-
-            <label for="data">Data (Ex: 07 de agosto de 2025):</label>
-            <input type="text" id="data" required>
-
-            <button type="submit">Visualizar Recibo</button>
-        </form>
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-green-700">Gerador de Recibos</h1>
+      <p class="text-sm text-green-900 opacity-70">Belo Vidro</p>
     </div>
 
-    <script>
-        document.getElementById('recibo-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio do formulário
-            
-            // Pega os valores do formulário
-            const valor = document.getElementById('valor').value;
-            const pagador = document.getElementById('pagador').value;
-            const descricao = document.getElementById('descricao').value;
-            const data = document.getElementById('data').value;
-            
-            // Armazena os dados no localStorage para a segunda página acessar
-            localStorage.setItem('reciboValor', valor);
-            localStorage.setItem('reciboPagador', pagador);
-            localStorage.setItem('reciboDescricao', descricao);
-            localStorage.setItem('reciboData', data);
+    <form id="recibo-form" class="space-y-4 text-green-900">
 
-            // Redireciona para a página do recibo
-            window.location.href = 'recibo.html';
-        });
-    </script>
+      <div>
+        <label for="valor" class="block text-sm font-medium mb-1">Valor (Ex: 1500.00):</label>
+        <input type="number" step="0.01" id="valor" required class="w-full rounded-lg border border-green-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/90">
+      </div>
+
+      <div>
+        <label for="pagador" class="block text-sm font-medium mb-1">Recebemos de:</label>
+        <input type="text" id="pagador" required class="w-full rounded-lg border border-green-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/90">
+      </div>
+
+      <div>
+        <label for="descricao" class="block text-sm font-medium mb-1">Referente a:</label>
+        <textarea id="descricao" rows="3" required class="w-full rounded-lg border border-green-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/90 resize-none"></textarea>
+      </div>
+
+      <div>
+        <label for="data" class="block text-sm font-medium mb-1">Data:</label>
+        <input type="date" id="data" required class="w-full rounded-lg border border-green-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/90">
+      </div>
+
+      <button type="submit" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-shadow shadow-md">
+        Visualizar Recibo
+      </button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Animação de entrada do formulário
+    anime({
+      targets: '#form-card',
+      opacity: [0, 1],
+      translateY: [40, 0],
+      easing: 'easeOutExpo',
+      duration: 2000
+    });
+
+    // Manipulação do formulário
+    document.getElementById('recibo-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const valor = document.getElementById('valor').value;
+      const pagador = document.getElementById('pagador').value;
+      const descricao = document.getElementById('descricao').value;
+      const data = document.getElementById('data').value;
+
+      localStorage.setItem('reciboValor', valor);
+      localStorage.setItem('reciboPagador', pagador);
+      localStorage.setItem('reciboDescricao', descricao);
+      localStorage.setItem('reciboData', data);
+
+      window.location.href = 'recibo.html';
+    });
+  </script>
 </body>
 </html>
