@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Meus Horários Extras</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    th {
+        background: #2e5d34;
+        color: white;
+    }
+</style>
+</head>
+<body>
+<h2>Horas Extras Registradas</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Funcionário</th>
+            <th>Data</th>
+            <th>Horas</th>
+            <th>Observação</th>
+        </tr>
+    </thead>
+    <tbody id="tabela"></tbody>
+</table>
+
+<script>
+    // Cole aqui a URL publicada do seu Google Apps Script
+    const API_URL = "https://script.google.com/macros/s/AKfycbwrARSJ8Q81fYSTDgIYc9DUVNsasQgZc6x61IvsJasU636QRzXwrEv_jjHHEfu02xPO/exec";
+
+    fetch(API_URL)
+        .then(res => {
+            if (!res.ok) throw new Error("Erro na requisição: " + res.status);
+            return res.json();
+        })
+        .then(dados => {
+            let tabela = document.getElementById("tabela");
+            tabela.innerHTML = "";
+
+            if (dados.length === 0) {
+                tabela.innerHTML = "<tr><td colspan='4'>Nenhuma hora extra registrada.</td></tr>";
+                return;
+            }
+
+            dados.forEach(linha => {
+                let tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${linha.funcionario}</td>
+                    <td>${linha.data}</td>
+                    <td>${linha.horas}</td>
+                    <td>${linha.observacao}</td>
+                `;
+                tabela.appendChild(tr);
+            });
+        })
+        .catch(err => {
+            console.error("Erro ao carregar dados:", err);
+            document.getElementById("tabela").innerHTML = "<tr><td colspan='4'>Erro ao carregar dados.</td></tr>";
+        });
+</script>
+</body>
+</html>
