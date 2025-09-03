@@ -1,10 +1,23 @@
 :root {
-    --verde-escuro: #194E4A;
-    --verde-claro: #B5C393;
-    --marrom: #8A6B4F;
-    --cor-bg: #ffffff;
-    --cor-texto: #000000;
-    --cor-secundaria: #e8ece8;
+      --verde-escuro: #14532d;
+  --verde-claro: #22c55e;
+  --marrom-claro: #a16207;
+  --cor-fundo: #f8fafc;
+  --cor-texto: #1f2937;
+  --cor-card-bg: #ffffff;
+  --cor-link: #14532d;
+  --cor-sombra: rgba(0,0,0,0.15);
+  
+}
+
+.dark-mode {
+    --cor-bg: #2c2c2c;
+    --cor-texto: #b6b2b2;
+    --cor-secundaria: #1f1f1f;
+    --cor-card-bg: #fffefe;
+    --cor-sombra: rgba(255, 255, 255, 0.1);
+    --cor-sombra-contato: rgba(255, 255, 255, 0.2);
+    --cor-link: #ffffff;
 }
 
 * {
@@ -13,26 +26,29 @@
     box-sizing: border-box;
 }
 
+.dark-mode #modal-login > div {
+    background: var(--cor-secundaria);
+}
+
+.dark-mode #modal-login h3 {
+    color: var(--cor-texto);
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: var(--cor-bg);
     color: var(--cor-texto);
     transition: all 0.3s ease-in-out;
-}
-
-.dark-mode {
-    --cor-bg: #2c2c2c;
-    --cor-texto: #ffffff;
-    --cor-secundaria: #1f1f1f;
+    line-height: 1.6;
 }
 
 /* ================= HEADER ================= */
 header {
+     background: var(--verde-escuro);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent;
     padding: 20px 5vw;
     z-index: 1000;
     display: flex;
@@ -42,10 +58,9 @@ header {
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: white;
-    background: none;
+    color: #fff;
 }
 
 .destaque-max {
@@ -80,29 +95,27 @@ header {
 .subsection-title {
     font-size: 1.5em;
     margin-bottom: 1%;
-    color: #8be488;
+    color: #5ed868;
     text-align: center;
 }
 
 nav a {
-    color: white;
+
     text-decoration: none;
-    margin: 0 10px;
+    color: var(--cor-nav);
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1rem; /* Tamanho padrão da fonte para desktops */
+    margin: 0 10px;
     transition: color 0.3s ease, transform 0.2s ease;
 }
-
 nav a:hover {
-    color: var(--verde-claro);
-    transform: scale(1.2);
+  color: var(--verde-claro);
 }
 
 .menu-container {
     display: flex;
     align-items: center;
     gap: 20px;
-    background: none;
 }
 
 .header-actions {
@@ -157,44 +170,26 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
-.btn-login {
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.btn-login:hover {
-    background-color: white;
-    color: #2c2c2c;
-}
-
 /* ================= BANNER ================= */
 .banner {
     position: relative;
     width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: var(--cor-secundaria);
+  height: auto;
+  min-height: 50vh;
 }
-
 .banner img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: auto;
     object-fit: cover;
-    display: block;
 }
 
 /* ================= CONTEÚDO ================= */
 .container {
-    padding: 60px 5vw;
+    padding: 40px 20px;
     max-width: 1200px;
     margin: auto;
 }
@@ -225,12 +220,12 @@ input:checked + .slider:before {
     align-items: center;
     text-align: center;
     padding: 30px;
-    background-color: #fff;
+    background-color: var(--cor-card-bg);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--cor-sombra);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
-    color: #333;
+    color: var(--cor-texto);
     width: 150px;
 }
 
@@ -240,23 +235,23 @@ input:checked + .slider:before {
     align-items: center;
     text-align: center;
     padding: 30px;
-    background-color: #fff;
+    background-color: var(--cor-card-bg);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--cor-sombra);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
-    color: #333;
+    color: var(--cor-texto);
     width: 150px;
 }
 
 .service-card-modern2:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 24px var(--cor-sombra-contato);
 }
 
 .service-card-modern:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 24px var(--cor-sombra-contato);
 }
 
 .icon-container {
@@ -282,7 +277,7 @@ input:checked + .slider:before {
     text-align: center;
     font-weight: bold;
     margin: 10px 0;
-    color: #333;
+    color: var(--cor-texto);
 }
 
 /* GALERIA / CARROSSEL */
@@ -298,7 +293,7 @@ input:checked + .slider:before {
     overflow: hidden;
     border-radius: 10px;
     border: 2px solid #ccc;
-    background: #fff;
+    background: var(--cor-card-bg);
 }
 
 .faixa {
@@ -331,11 +326,11 @@ input:checked + .slider:before {
 /* ================= CONTATO ================= */
 .contato {
     padding: 40px 20px;
-    background-color: #ececec;
+    background-color: var(--cor-secundaria);
     max-width: 600px;
     margin: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px var(--cor-sombra);
 }
 
 .contato h2 {
@@ -353,13 +348,15 @@ input:checked + .slider:before {
 .contato input,
 .contato textarea {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--cor-sombra);
     border-radius: 5px;
+    background-color: var(--cor-card-bg);
+    color: var(--cor-texto);
 }
 
 .contato button {
     background-color: var(--verde-escuro);
-    color: white;
+    color: var(--cor-link);
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -369,7 +366,7 @@ input:checked + .slider:before {
 
 .contato button:hover {
     transform: scale(1.08);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 10px var(--cor-sombra);
 }
 
 /* ================= REDES FIXAS ================= */
@@ -383,7 +380,7 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px var(--cor-sombra);
     z-index: 1000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 50%;
@@ -394,7 +391,7 @@ input:checked + .slider:before {
 .whatsapp:hover,
 .instagram:hover {
     transform: scale(1.08);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 18px var(--cor-sombra-contato);
 }
 
 .whatsapp {
@@ -409,142 +406,68 @@ input:checked + .slider:before {
 
 /* ================= FOOTER ================= */
 footer {
-    background: #222;
-    color: #ccc;
+    background: var(--cor-secundaria);
+    color: var(--cor-texto);
     padding: 30px 5vw;
     text-align: center;
     margin-top: 40px;
+
+}
+footer p {
+  word-wrap: break-word;
+  line-height: 1.4;
 }
 
-/* ================= PAINEL DO FUNCIONÁRIO ================= */
-.painel-funcionario {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 250px;
-    height: 100%;
-    background-color: var(--verde-escuro);
-    color: white;
-    padding: 20px;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
-    transition: right 0.5s ease-in-out;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* Botão hambúrguer */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fffcfc;
 }
 
-.painel-funcionario.aberto {
-    right: 0;
-}
-
-.painel-funcionario h3 {
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 10px;
-}
-
-.painel-funcionario ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: auto;
-}
-
-.painel-funcionario li {
-    margin-bottom: 15px;
-}
-
-.painel-funcionario a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
-    transition: color 0.3s ease;
-}
-
-.painel-funcionario a:hover {
-    color: var(--verde-claro);
-}
-
-.painel-funcionario button {
-    width: 100%;
-    padding: 10px;
-    background-color: #d9534f;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.painel-funcionario button:hover {
-    background-color: #c9302c;
-}
-
-/* ================= MODAL DE LOGIN ================= */
-#modal-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1001;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-
-#modal-login.ativo {
-    opacity: 1;
-    visibility: visible;
-}
-
-#modal-login > div {
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 350px;
-    width: 90%;
-    text-align: center;
-    transform: translateY(-20px);
-    transition: transform 0.3s ease-in-out;
-}
-
-#modal-login.ativo > div {
-    transform: translateY(0);
-}
-
-.dark-mode #modal-login > div {
-    background: var(--cor-secundaria);
-}
-
-.dark-mode #modal-login h3 {
-    color: var(--cor-texto);
-}
-
-/* ================= MEDIA QUERY ================= */
+/* Estilo mobile */
 @media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    nav {
-        margin-top: 10px;
-        width: 100%;
-    }
-    nav a {
-        display: inline-block;
-        margin: 10px 10px 0 0;
-        font-size: 0.9rem;
-    }
-    .section-title {
-        font-size: 1.5em;
-    }
-    .contato {
-        padding: 30px 10px;
-    }
+  .menu-container {
+    flex-direction: row-reverse;
+    gap: 10px;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: var(--cor-card-bg);
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--cor-sombra);
+  }
+
+  nav.ativo {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+   .about-text {
+    font-size: 1rem;
+  }
+
+  nav a {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: var(--cor-texto);
+  }
+  .contato {
+    width: 95%;
+    padding: 20px;
+  }
 }
+
+
