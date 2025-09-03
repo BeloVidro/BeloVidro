@@ -18,8 +18,8 @@
     <header>
         <div class="logo"><strong>BELO VIDRO</strong></div>
         <div class="menu-container">
+            <button class="hamburger" onclick="document.querySelector('.menu-container nav').classList.toggle('ativo')">☰</button>
             <nav>
-                <a href="sitebelo.html">Home</a>
                 <a href="#sobre">Sobre</a>
                 <a href="#servicos">Serviços e projetos</a>
                 <a href="#contato">Contato</a>
@@ -29,7 +29,6 @@
                     <input type="checkbox" id="toggle-tema">
                     <span class="slider round"></span>
                 </label>
-                <button onclick="abrirLogin()" class="btn-login">Login</button>
             </div>
         </div>
     </header>
@@ -169,29 +168,55 @@
         <p>© 2025 Belo Vidro - Todos os direitos reservados.</p>
         <p>Contatos: (87) 9 9626-2126 / (87) 9 9204-5489 / (87) 9 9623-3094 / (87) 9 9623-3096 • belovidro@hotmail.com</p>
     </footer>
+   <script>
+     document.getElementById("btn-desenho").addEventListener("click", () => {
+        const urlRetorno = encodeURIComponent(window.location.href);
+        window.open(`desenho/teste.html?retorno=${urlRetorno}`, "_blank");
+      });
 
-    <div id="painel-funcionario" class="painel-funcionario">
-        <h3>🔧 Painel do Funcionário</h3>
-        <ul>
-            <li><a href="catalogo/entrada/capacatalogo.html">Catalogos</a></li>
-            <li><a href="gerador de pdf e recibos/testepdf.html">Gerar Recibo</a></li>
-            <li><a href="desenho/teste.html">Desenho</a></li>
-            <li><a href="recibo/index.html.html">Recibo</a></li>
-            <li><a href="https://sistema.wvetro.com.br/wvetro/app.wvetro.login">Wvetro</a></li>
-        </ul>
-        <button onclick="logoutFuncionario()">Sair</button>
-    </div>
+      const params = new URLSearchParams(window.location.search);
+      const arquivoBase64 = params.get("desenho");
+      if (arquivoBase64) {
+        fetch(arquivoBase64)
+          .then(res => res.blob())
+          .then(blob => {
+            const file = new File([blob], "desenho.png", { type: blob.type });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            document.querySelector('input[type="file"]').files = dataTransfer.files;
+          });
+      };
 
-    <div id="modal-login" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999;">
-        <div style="background:#fff; max-width:300px; margin:100px auto; padding:20px; border-radius:10px; text-align:center;">
-            <h3>Login Funcionário</h3>
-            <input type="text" id="usuario" placeholder="Usuário" style="width:100%; padding:8px; margin-bottom:10px;">
-            <input type="password" id="senha" placeholder="Senha" style="width:100%; padding:8px; margin-bottom:10px;">
-            <button onclick="fazerLogin()" style="padding:8px 16px;">Entrar</button>
-            <p id="erro-login" style="color:red; margin-top:10px;"></p>
-            <button onclick="fecharLogin()" style="margin-top:10px;">Cancelar</button>
-        </div>
-    </div>
-    <script src="script.js" defer></script>
+    // Dark Mode
+    const toggleTema = document.getElementById('toggle-tema');
+    const body = document.body;
+
+    function applyTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark-mode') {
+        body.classList.add('dark-mode');
+        toggleTema.checked = true;
+      } else if (savedTheme === 'light-mode') {
+        body.classList.remove('dark-mode');
+        toggleTema.checked = false;
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.add('dark-mode');
+        toggleTema.checked = true;
+      }
+    }
+
+    applyTheme();
+
+    toggleTema.addEventListener('change', () => {
+      if (toggleTema.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light-mode');
+      }
+    });
+
+   </script>
 </body>
 </html>
