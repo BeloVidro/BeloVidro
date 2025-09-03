@@ -1,89 +1,473 @@
-// --- Funções do Modal de Login ---
-function abrirLogin() {
-    document.getElementById("modal-login").style.display = "block";
+:root {
+      --verde-escuro: #14532d;
+  --verde-claro: #22c55e;
+  --marrom-claro: #a16207;
+  --cor-fundo: #f8fafc;
+  --cor-texto: #1f2937;
+  --cor-card-bg: #ffffff;
+  --cor-link: #14532d;
+  --cor-sombra: rgba(0,0,0,0.15);
+  
 }
 
-function fecharLogin() {
-    document.getElementById("modal-login").style.display = "none";
-    document.getElementById("erro-login").textContent = "";
+.dark-mode {
+    --cor-bg: #2c2c2c;
+    --cor-texto: #b6b2b2;
+    --cor-secundaria: #1f1f1f;
+    --cor-card-bg: #fffefe;
+    --cor-sombra: rgba(255, 255, 255, 0.1);
+    --cor-sombra-contato: rgba(255, 255, 255, 0.2);
+    --cor-link: #ffffff;
 }
 
-// --- Funções de Autenticação e Painel do Funcionário ---
-function fazerLogin() {
-    const usuario = document.getElementById("usuario").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const erro = document.getElementById("erro-login");
-    const painel = document.getElementById("painel-funcionario");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    if (usuario === "funcionario" && senha === "belo2025") {
-        localStorage.setItem("logadoFuncionario", "sim");
-        painel.classList.add("aberto");
-        fecharLogin();
-    } else {
-        erro.textContent = "Usuário ou senha incorretos.";
+.dark-mode #modal-login > div {
+    background: var(--cor-secundaria);
+}
+
+.dark-mode #modal-login h3 {
+    color: var(--cor-texto);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--cor-bg);
+    color: var(--cor-texto);
+    transition: all 0.3s ease-in-out;
+    line-height: 1.6;
+}
+
+/* ================= HEADER ================= */
+header {
+     background: var(--verde-escuro);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5vw;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: none;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.destaque-max {
+    border: 2px solid #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulso 3s infinite;
+}
+
+.destaque-max:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px rgba(76, 175, 80, 0.35);
+}
+
+@keyframes pulso {
+    0%, 100% { box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); }
+    50% { box-shadow: 0 0 18px rgba(76, 175, 80, 0.5); }
+}
+
+.destaque-titulo::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: #4CAF50;
+    bottom: 0;
+    left: 25%;
+    border-radius: 2px;
+}
+
+.subsection-title {
+    font-size: 1.5em;
+    margin-bottom: 1%;
+    color: #5ed868;
+    text-align: center;
+}
+
+nav a {
+
+    text-decoration: none;
+    color: var(--cor-nav);
+    font-weight: bold;
+    font-size: 1rem; /* Tamanho padrão da fonte para desktops */
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+nav a:hover {
+  color: var(--verde-claro);
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Botão de tema */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2e7d32;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* ================= BANNER ================= */
+.banner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  height: auto;
+  min-height: 50vh;
+}
+.banner img {
+  width: 100%;
+  height: auto;
+    object-fit: cover;
+}
+
+/* ================= CONTEÚDO ================= */
+.container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 2em;
+    margin-bottom: 2%;
+    color: #2e7d32;
+    text-align: center;
+}
+
+.home {
+    display: block;
+}
+
+/* ================= SERVIÇOS ================= */
+.service-cards-modern {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.service-card-modern {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    background-color: var(--cor-card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--cor-sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--cor-texto);
+    width: 150px;
+}
+
+.service-card-modern2 { 
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    background-color: var(--cor-card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--cor-sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--cor-texto);
+    width: 150px;
+}
+
+.service-card-modern2:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px var(--cor-sombra-contato);
+}
+
+.service-card-modern:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px var(--cor-sombra-contato);
+}
+
+.icon-container {
+    font-size: 50px;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.service-card-modern2 img {
+    width: 108%;
+    height: 104%;
+    display: block;
+}
+
+.service-card-modern img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.service-card-modern h3 {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--cor-texto);
+}
+
+/* GALERIA / CARROSSEL */
+.galeria {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+.galeria h3 { margin: 0 0 16px; }
+
+.carrossel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    background: var(--cor-card-bg);
+}
+
+.faixa {
+    display: flex;
+    animation: deslizar 8s linear infinite;
+}
+
+.faixa:hover {
+    animation-play-state: paused;
+}
+
+.faixa img {
+    width: 220px;
+    height: 280px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+@keyframes deslizar {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
     }
 }
 
-function logoutFuncionario() {
-    localStorage.removeItem("logadoFuncionario");
-    const painel = document.getElementById("painel-funcionario");
-    painel.classList.remove("aberto");
-    location.reload();
+/* ================= CONTATO ================= */
+.contato {
+    padding: 40px 20px;
+    background-color: var(--cor-secundaria);
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--cor-sombra);
 }
 
-// --- Eventos e Lógica na Inicialização da Página ---
-window.addEventListener("load", () => {
-    const painel = document.getElementById("painel-funcionario");
-
-    if (localStorage.getItem("logadoFuncionario") === "sim") {
-        painel.classList.add("aberto");
-    }
-
-    document.getElementById("btn-desenho").addEventListener("click", () => {
-        const urlRetorno = encodeURIComponent(window.location.href);
-        window.open(`desenho/teste.html?retorno=${urlRetorno}`, "_blank");
-    });
-
-    const params = new URLSearchParams(window.location.search);
-    const arquivoBase64 = params.get("desenho");
-    if (arquivoBase64) {
-        fetch(arquivoBase64)
-            .then(res => res.blob())
-            .then(blob => {
-                const file = new File([blob], "desenho.png", { type: blob.type });
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
-                document.querySelector('input[type="file"]').files = dataTransfer.files;
-            });
-    }
-});
-
-// --- Lógica do Dark Mode ---
-const toggleTema = document.getElementById('toggle-tema');
-const body = document.body;
-
-function applyTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark-mode') {
-        body.classList.add('dark-mode');
-        toggleTema.checked = true;
-    } else if (savedTheme === 'light-mode') {
-        body.classList.remove('dark-mode');
-        toggleTema.checked = false;
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        body.classList.add('dark-mode');
-        toggleTema.checked = true;
-    }
+.contato h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: green;
 }
 
-applyTheme();
+.contato form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-toggleTema.addEventListener('change', () => {
-    if (toggleTema.checked) {
-        body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
-    } else {
-        body.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light-mode');
-    }
-});
+.contato input,
+.contato textarea {
+    padding: 10px;
+    border: 1px solid var(--cor-sombra);
+    border-radius: 5px;
+    background-color: var(--cor-card-bg);
+    color: var(--cor-texto);
+}
+
+.contato button {
+    background-color: var(--verde-escuro);
+    color: var(--cor-link);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contato button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 10px var(--cor-sombra);
+}
+
+/* ================= REDES FIXAS ================= */
+.whatsapp,
+.instagram {
+    position: fixed;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px var(--cor-sombra);
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.whatsapp:hover,
+.instagram:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px var(--cor-sombra-contato);
+}
+
+.whatsapp {
+    bottom: 25px;
+    background-image: url('img/icom%20whastaapp.jpeg');
+}
+
+.instagram {
+    bottom: 90px;
+    background-image: url('img/2227.jpg');
+}
+
+/* ================= FOOTER ================= */
+footer {
+    background: var(--cor-secundaria);
+    color: var(--cor-texto);
+    padding: 30px 5vw;
+    text-align: center;
+    margin-top: 40px;
+
+}
+footer p {
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* Botão hambúrguer */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fffcfc;
+}
+
+/* Estilo mobile */
+@media (max-width: 768px) {
+  .menu-container {
+    flex-direction: row-reverse;
+    gap: 10px;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: var(--cor-card-bg);
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--cor-sombra);
+  }
+
+  nav.ativo {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+   .about-text {
+    font-size: 1rem;
+  }
+
+  nav a {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: var(--cor-texto);
+  }
+  .contato {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+
