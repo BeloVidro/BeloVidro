@@ -1,251 +1,197 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belo Vidro</title>
-  <!-- Favicon padrão -->
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-<!-- Apple -->
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<!-- Android -->
-<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
-
-<!-- Manifesto -->
-<link rel="manifest" href="site.webmanifest">
-
-<!-- fica os estilos referenciados-->
-<link rel="stylesheet" href="estilo.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belo Vidro</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-ieo3yv3wK8SgJ4+O/6Q6u6kL5aLgJk4fL/yFk5dD5b5tN5e4B3aVbJjC2xG4I8cWl0B5N5/nKz6Jz35J5+N5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>  <header>
-
-
-  <div class="logo"><strong>BELO VIDRO</strong></div>
-
- <div class="menu-container">
-  <nav>
-    <a href="sitebelo.html">Home</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#servicos">Serviços e projetos</a>
-    <a href="#contato">Contato</a>
-  </nav>
-  <!-- Botões no canto direito -->
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <label class="switch">
-  <input type="checkbox" id="toggle-tema">
-  <span class="slider"></span>
-</label>
-
-    <button onclick="abrirLogin()" style="background: #2e7d32; color: white; padding: 6px 12px; border: none; border-radius: 5px;">Login</button>
-  </div>
-</div>
-
-  </header>  <section class="banner">
-    <img src="img/logo.png" alt="Logo da Vidraçaria Belo Vidro" />
-  </section>  
-      <section id="sobre" class="container">
-    <h2 class="section-title">Sobre Nós</h2>
-    <p style="text-align: center; font-family: 'Courier New', monospace; font-size: 20px;">
-   A  Vidraçaria Belo vidro traz para dentro do seu lar não só o melhor do sol,
-   <br>o bem-estar e a beleza da luz natural,mas também o requinte e a qualidade com o menor preço..</p>
-  </section>  <section id="servicos" class="container">
-
-    <!-- onde fica os cartões de serviço, com imagem e descrição -->
-    <h2 class="section-title">Nossos Serviços</h2>
-    <div class="services">
-
-
-      <div class="service-card">
-        <img src="img/vidro temperDO EXEMPLO.webp" alt="Vidro">
-        <h3>Vidros Temperados</h3>
-        <p>Segurança, elegância e durabilidade para seu ambiente.</p>
-      </div>
-      <div class="service-card">
-        <img src="img/box de exemplo.jpg" alt="Box">
-        <h3>Box para Banheiro</h3>
-        <p>Modelos modernos, sob medida e com excelente acabamento.</p>
-      </div>
-      <div class="service-card">
-        <img src="img/espelho.jpeg" alt="Espelho">
-        <h3>Espelhos Decorativos</h3>
-        <p>Valorizando espaços com sofisticação.</p>
-      </div>
-      <div class="service-card">
-        <img src="img/exemplo acess.jpeg" alt="Acessórios">
-        <h3>Acessórios</h3>
-        <p>Perfis, roldanas, puxadores e muito mais.</p>
-      </div>
-       <div class="service-card">
-        <img src="img/inox.jpeg" alt="produtos inox">
-        <h3>Produtos em metal inox</h3>
-        <p> Puxadores,Escadas, Guarda Corpo e +. </p>
-      </div>
-       <div class="service-card">
-        <img src="img/esquadrinha exem.jpg" alt="esquadrinhas em aluminio">
-        <h3>Esquadrinhas em aluminio</h3>
-        <p>portas, janelas, box de pia e etc 
-          <br>tudo com a persolização e a qualidade que você<br>
-          merece.</p>
+<body>
+    <header>
+        <div class="logo"><strong>BELO VIDRO</strong></div>
+        <div class="menu-container">
+            <nav>
+                <a href="sitebelo.html">Home</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços e projetos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <div class="header-actions">
+                <label class="toggle-switch" for="toggle-tema">
+                    <input type="checkbox" id="toggle-tema">
+                    <span class="slider round"></span>
+                </label>
+                <button onclick="abrirLogin()" class="btn-login">Login</button>
+            </div>
         </div>
-        <div class="service-card">
-        <img src="img/principal.jpeg" alt="decoração">
-        <h3>Projetos com foco decorativo</h3>
-        <p>pensou,tá feito
+    </header>
+
+    <section class="banner">
+        <img src="img/IMAGEMA2.png" alt="Logo da Vidraçaria Belo Vidro" />
+    </section>
+
+    <section id="sobre" class="container">
+        <h2 class="section-title">Sobre Nós</h2>
+        <p class="about-text" style="text-align: center;">
+            A Vidraçaria Belo Vidro traz para dentro do seu lar não só o melhor do sol,
+            <br>o bem-estar e a beleza da luz natural, mas também o requinte e a qualidade com o menor preço.
         </p>
-         </div>
-        <div class="service-card">
-        <img src="img/principal2.jpeg" alt="ornamentação">
-        <h3>Ornamentação de alto padrão</h3>
-        <p> com proteção e beleza para sua familia 
-        </p>
+    </section>
+
+    <section id="servicos" class="container">
+
+        <h2 class="section-title">Serviços</h2>
+        <div class="service-cards-modern"> 
+    <h3 class="subsection-title">Vidros Temperados</h3>
+
+    <div class="service-cards-modern">
+
+        <a href="pagina-espelhos.html" class="service-card-modern" title="Espelhos">
+            <div class="icon-container">
+                <img src="img/mirror_6342753.png" alt="Espelhos" />
+            </div>
+        </a>
+        <a href="pagina-box-pia.html" class="service-card-modern" title="Box de Pia">
+            <div class="icon-container">
+                <img src="img/sink_1322576.png" alt="Box de Pia" />
+            </div>
+        </a>
+           <a href="pagina-box-banheiro.html" class="service-card-modern" title="Box de Banheiro">
+            <div class="icon-container">
+                <img src="img/entrance.png" alt="Box Banheiro" />
+            </div>
+        </a>
+           <a href="pagina-portas.html" class="service-card-modern" title="Portas">
+            <div class="icon-container">
+                <img src="img/sliding-door.png" alt="Portas" />
+            </div>
+        </a>
+           <a href="pagina-janelas.html" class="service-card-modern" title="Janelas">
+            <div class="icon-container">
+                <img src="img/window-frame.png" alt="Janelas" />
+            </div>
+        </a>
+             <div class="service-cards-modern"> 
+    <h3 class="subsection-title">Esquadrinhas De aluminio e Inox</h3>
+
+    <div class="service-cards-modern">
+
+        <a href="pagina-espelhos.html" class="service-card-modern" title="Porta">
+            <div class="icon-container">
+                <img src="img/door_2559581.png" alt="Porta" />
+            </div>
+        </a>
+        <a href="pagina-box-pia.html" class="service-card-modern" title="portão">
+            <div class="icon-container">
+                <img src="img/square_136774.png" alt="Portão" />
+            </div>
+        </a>
+           <a href="pagina-box-banheiro.html" class="service-card-modern" title="Janelas">
+            <div class="icon-container">
+                <img src="img/window_5278999.png" alt="Janelas" />
+            </div>
+        </a>
+           <a href="pagina-portas.html" class="service-card-modern" title="Escadas">
+            <div class="icon-container">
+                <img src="img/stairs_1655809.png" alt="Escadas" />
+            </div>
+        </a>
+           <a href="pagina-janelas.html" class="service-card-modern" title="Guarda-Corpo">
+            <div class="icon-container">
+                <img src="img/people_15879957.png" alt="Guarda-Corpo" />
+            </div>
+        </a>
+    <div>
+    <h3 class="subsection-title ">Max System</h3>
+    <div class="service-cards-modern">
+    
+        <a href="pagina-max-system.html" class=" service-card-modern2 destaque-max" title="Max System">
+            <div class="icon-container">
+                <img src="img/JANELA_MAX_SYSTEHJ-removebg-preview.png" alt=" Janelas System " />
+            </div>
+        </a>
+          <a href="pagina-max-system.html" class="service-card-modern2 destaque-max" title="Max System">
+            <div class="icon-container">
+                <img src="img/IMAGEM ICON PORTAMAXSYSTEM.png" alt=" Porta Max System " />
+            </div>
+        </a>
+</div>
+
+</section>
+
+          
+
+    <section id="galeria-projetos">
+        <h2 class="section-title">Galeria de Projetos</h2>
+           <div class="carrossel">
+          <div class="faixa">
+            <img src="images (1).jpg" alt="">
+            <img src="images (2).jpg" alt="">
+            <img src="images (3).jpg" alt="">
+            <img src="images (4).jpg" alt="">
+            <img src="images (1).jpg" alt="">
+            <img src="images (2).jpg" alt="">
+            <img src="images (3).jpg" alt="">
+            <img src="images (4).jpg" alt="">
+          </div>
       </div>
+    </section>
+
+    <section class="contato" id="contato">
+        <h2>Solicite um Orçamento</h2>
+        <form action="https://formsubmit.co/Belovidro699@gmail.com" method="POST">
+            <input type="text" name="nome" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <textarea name="mensagem" placeholder="Descreva seu projeto ou dúvidas..." rows="5" required></textarea>
+            <input type="hidden" name="_subject" value="Novo orçamento recebido pelo site">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="file" name="arquivo" id="arquivo" accept="image/*,application/pdf">
+            <button type="button" id="btn-desenho">✏️ Fazer um Desenho</button>
+            <button type="submit">Enviar</button>
+            <input type="hidden" name="_next" value="https://belovidro.github.io/BeloVidro/indexobrigado.html">
+        </form>
+    </section>
+    
+    <a class="whatsapp" href="https://wa.me/558796262126" target="_blank" aria-label="WhatsApp"></a>
+    <a class="instagram" href="https://www.instagram.com/belovidro/" target="_blank" aria-label="Instagram"></a>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>© 2025 Belo Vidro - Todos os direitos reservados.</p>
+        <p>Contatos: (87) 9 9626-2126 / (87) 9 9204-5489 / (87) 9 9623-3094 / (87) 9 9623-3096 • belovidro@hotmail.com</p>
+    </footer>
+
+    <div id="painel-funcionario" class="painel-funcionario">
+        <h3>🔧 Painel do Funcionário</h3>
+        <ul>
+            <li><a href="catalogo/entrada/capacatalogo.html">Catalogos</a></li>
+            <li><a href="gerador de pdf e recibos/testepdf.html">Gerar Recibo</a></li>
+            <li><a href="desenho/teste.html">Desenho</a></li>
+            <li><a href="recibo/index.html.html">Recibo</a></li>
+            <li><a href="https://sistema.wvetro.com.br/wvetro/app.wvetro.login">Wvetro</a></li>
+        </ul>
+        <button onclick="logoutFuncionario()">Sair</button>
     </div>
-    <section class="galeria">
-  <h2 class="section-title">Galeria de Projetos</h2>
-  <div class="glider-contain">
-    <div class="glider">
-      <img src="img/p4.jpg" alt="Projeto 1" loading="lazy">
-      <img src="img/p1.jpeg" alt="Projeto 2" loading="lazy">
-      <img src="img/p2.jpeg" alt="Projeto 3" loading="lazy">
-      <img src="img/p32.jpeg" alt="Projeto 4" loading="lazy">
-      <img src="img/portona.jpg"alt="Projeto 5" loading="lazy">
-      <img src="img/IMG-20220928-WA0149.jpg" alt="Projeto 6" loading="lazy">
-      <img src="img/IMG-20220804-WA0011.jpg" alt="Projeto 7" loading="lazy">
-      <img src="img/p7.jpg" alt="Projeto 8" loading="lazy">
-      <img src="img/IMG-20220926-WA0078.jpg" alt="Projeto 9" loading="lazy">
-      <img src="img/p3.jpeg" alt="Projeto 10" loading="lazy">
+
+    <div id="modal-login" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999;">
+        <div style="background:#fff; max-width:300px; margin:100px auto; padding:20px; border-radius:10px; text-align:center;">
+            <h3>Login Funcionário</h3>
+            <input type="text" id="usuario" placeholder="Usuário" style="width:100%; padding:8px; margin-bottom:10px;">
+            <input type="password" id="senha" placeholder="Senha" style="width:100%; padding:8px; margin-bottom:10px;">
+            <button onclick="fazerLogin()" style="padding:8px 16px;">Entrar</button>
+            <p id="erro-login" style="color:red; margin-top:10px;"></p>
+            <button onclick="fecharLogin()" style="margin-top:10px;">Cancelar</button>
+        </div>
     </div>
-
-    <button aria-label="Anterior" class="glider-prev">«</button>
-    <button aria-label="Próximo" class="glider-next">»</button>
-    <div role="tablist" class="dots"></div>
-  </div>
-  </section>  <section class="contato" id="contato">
-    <h2>Solicite um Orçamento</h2>
-
-<!-- resposansavel pelo contato, fazendo com que seja possivel vir o gmail para cá -->
-<form action="https://formsubmit.co/Belovidro699@gmail.com" method="POST">
-  <input type="text" name="nome" placeholder="Seu nome" required>
-  <input type="email" name="email" placeholder="Seu e-mail" required>
-  <textarea name="mensagem" placeholder="Descreva seu projeto ou dúvidas..." rows="5" required></textarea>
-
-  <!-- Configurações adicionais -->
-  <input type="hidden" name="_subject" value="Novo orçamento recebido pelo site">
-  <input type="hidden" name="_captcha" value="false">
-  <!-- Campo para enviar imagem ou PDF -->
-<input type="file" name="arquivo" id="arquivo" accept="image/*,application/pdf">
-<button type="button" id="btn-desenho">✏️ Fazer um Desenho</button>
-  <button type="submit">Enviar</button>
-  <input type="hidden" name="_next" value="https://belovidro.github.io/BeloVidro/indexobrigado.html">
-</form>
-     <div class="instagram">
-    <a href="https://instagram.com/belovidro" target="_blank" aria-label="Nos acompanhe no Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-  </div>
-  </section><a class="whatsapp" href="https://wa.me/558796262126" target="_blank"><img src="img/icom whastaapp.jpeg" alt="whatsapp"></a>
- 
-</section><a class="instagram" href="https://www.instagram.com/belovidro/" alt="instagram"><img src="img/2227.jpg" alt="instagram"></a>
- 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
-<script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
-<script src="script.js"></script>
-
-<footer>
-    <p>© 2025 Belo Vidro - Todos os direitos reservados.</p>
-    <p>Contatos: (87) 9 9626-2126 / (87) 9 9204-5489 / (87) 9 9623-3094 / (87) 9 9623-3096 • belovidro@hotmail.com</p>
-  </footer>
-<!-- Painel lateral de ferramentas (inicialmente oculto) -->
-<div id="painel-funcionario" class="painel-funcionario" style="display: none;">
-  <h3>🔧 Painel do Funcionário</h3>
-  <ul>
-    <li><a href="catalogo/entrada/capacatalogo.html">Catalogos</a></li>
-    <li><a href="desenho/teste.html">Desenho</a></li>
-    <li><a href="horarios.html">BDBbelo</a></li>
-    <li><a href="recibo/index.html.html">Recibo</a></li>
-    <li><a href="https://sistema.wvetro.com.br/wvetro/app.wvetro.login">Wvetro</a></li>
-    <!-- outras ferramentas internas -->
-  </ul>
-  <button onclick="logoutFuncionario()">Sair</button>
-</div>
-
-<!-- Modal de Login (invisível por padrão) -->
-<div id="modal-login" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999;">
-  <div style="background:#fff; max-width:300px; margin:100px auto; padding:20px; border-radius:10px; text-align:center;">
-    <h3>Login Funcionário</h3>
-    <input type="text" id="usuario" placeholder="Usuário" style="width:100%; padding:8px; margin-bottom:10px;">
-    <input type="password" id="senha" placeholder="Senha" style="width:100%; padding:8px; margin-bottom:10px;">
-    <button onclick="fazerLogin()" style="padding:8px 16px;">Entrar</button>
-    <p id="erro-login" style="color:red; margin-top:10px;"></p>
-    <button onclick="fecharLogin()" style="margin-top:10px;">Cancelar</button>
-  </div>
-</div>
-
-<script>
-  function abrirLogin() {
-    document.getElementById("modal-login").style.display = "block";
-  }
-
-  function fecharLogin() {
-    document.getElementById("modal-login").style.display = "none";
-    document.getElementById("erro-login").textContent = "";
-  }
-
-  function fazerLogin() {
-    const usuario = document.getElementById("usuario").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const erro = document.getElementById("erro-login");
-
-    if (usuario === "funcionario" && senha === "belo2025") {
-      localStorage.setItem("logadoFuncionario", "sim");
-      location.reload();
-    } else {
-      erro.textContent = "Usuário ou senha incorretos.";
-    }
-  }
-
-  function logoutFuncionario() {
-    localStorage.removeItem("logadoFuncionario");
-    location.reload();
-  }
-
-  // Ao carregar a página, verificar login
-  window.onload = () => {
-    const painel = document.getElementById("painel-funcionario");
-    if (localStorage.getItem("logadoFuncionario") === "sim") {
-      painel.style.display = "block";
-    }
-  };
-
-  // Botão para abrir a tela de desenho
-document.getElementById("btn-desenho").addEventListener("click", () => {
-  const urlRetorno = encodeURIComponent(window.location.href);
-  window.open(`desenho/teste.html?retorno=${urlRetorno}`, "_blank");
-});
-
-// Ao carregar a página, verificar se veio um desenho como parâmetro
-window.addEventListener("load", () => {
-  const params = new URLSearchParams(window.location.search);
-  const arquivoBase64 = params.get("desenho");
-
-  if (arquivoBase64) {
-    fetch(arquivoBase64)
-      .then(res => res.blob())
-      .then(blob => {
-        const file = new File([blob], "desenho.png", { type: blob.type });
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        document.querySelector('input[type="file"]').files = dataTransfer.files;
-      });
-  }
-});
-
-
-</script>
-
+    <script src="script.js" defer></script>
 </body>
 </html>
