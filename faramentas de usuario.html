@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Funcionário</title>
+    
+    <style>
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4CAF50; /* Verde sólido para o fundo da tela */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Estilo do container principal para centralizar */
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    text-align: center; /* Centraliza o título */
+}
+
+/* Estilo do título fora do card */
+.container h3 {
+    color: #ffffff; /* Cor branca para o título */
+    font-size: 1.8em;
+    margin-bottom: 20px; /* Espaçamento entre o título e o card */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Sombra sutil para destaque */
+}
+
+/* Estilo do painel (card) */
+.painel-funcionario {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efeito de leve levantamento no hover do card */
+.painel-funcionario:hover {
+    transform: translateY(-5px);
+}
+
+.painel-funcionario ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.painel-funcionario li {
+    margin-bottom: 15px;
+}
+
+.painel-funcionario a {
+    display: block;
+    padding: 12px;
+    background-color: #e8f5e9;
+    color: #388e3c;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito ao tocar/passar o mouse nos links (botões) */
+.painel-funcionario a:hover,
+.painel-funcionario a:focus {
+    background-color: #a5d6a7;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação adicional com "ripple effect" */
+.painel-funcionario a:active::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out forwards;
+}
+
+@keyframes ripple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0.7;
+    }
+    to {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+
+/* Efeito ao tocar/passar o mouse no botão "Sair" */
+.painel-funcionario button:hover,
+.painel-funcionario button:focus {
+    background-color: #d32f2f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação adicional com "ripple effect" para o botão Sair */
+.painel-funcionario button:active::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out forwards;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container h3 {
+        font-size: 1.5em;
+    }
+
+    .painel-funcionario {
+        padding: 20px;
+        box-shadow: none;
+        border-radius: 0;
+        transform: none !important;
+    }
+
+    .painel-funcionario a:hover,
+    .painel-funcionario a:focus,
+    .painel-funcionario button:hover,
+    .painel-funcionario button:focus {
+        transform: none;
+        box-shadow: none;
+    }
+}</style>
+</head>
+<body>
+
+    <div class="container">
+        <h3> Painel do Funcionário</h3>
+        <div id="painel-funcionario" class="painel-funcionario">
+            <ul>
+                <li><a href="catalogo/entrada/capacatalogo.html">Catálogos</a></li>
+                <li><a href="gerador de pdf e recibos/testepdf.html">Gerar Recibo</a></li>
+                <li><a href="desenho/teste.html">Desenho</a></li>
+                <li><a href="recibo/index.html.html">Recibo</a></li>
+                <li><a href="https://sistema.wvetro.com.br/wvetro/app.wvetro.login">Wvetro</a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
