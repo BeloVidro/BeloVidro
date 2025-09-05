@@ -351,7 +351,7 @@ input:checked + .slider:before {
     border: 1px solid var(--cor-sombra);
     border-radius: 5px;
     background-color: var(--cor-card-bg);
-    color: var(--cor-texto);
+    color: #fffff;
 }
 
 .contato button {
@@ -469,5 +469,6 @@ footer p {
     padding: 20px;
   }
 }
+
 
 
