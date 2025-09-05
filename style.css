@@ -356,7 +356,7 @@ input:checked + .slider:before {
 
 .contato button {
     background-color: var(--verde-escuro);
-    color: var(--cor-link);
+    color: #ffff;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -469,6 +469,7 @@ footer p {
     padding: 20px;
   }
 }
+
 
 
 
