@@ -11,6 +11,7 @@
       --text:#333;
     }
 
+    /* Estilos globais e reset básico */
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -23,9 +24,10 @@
     /* TOPO */
     header{
       position: relative;
-      background: url('ChatGPT\ Image\ 25\ de\ ago.\ de\ 2025\,\ 15_54_27.png') no-repeat center center;  
+      background: url('https://i.ibb.co/L5Qx815/ChatGPT-Image-25-de-ago-de-2025-15-54-27.png') no-repeat center center;  
       background-size: cover;
       color: white;
+      padding: 60px 24px;
     }
 
     header::before {
@@ -41,7 +43,6 @@
       z-index: 2; /* fica acima do overlay */
       max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 24px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -49,7 +50,7 @@
 
     .brand-logo {
       font-family: 'Poppins', sans-serif;
-      font-size: 2.5em;
+      font-size: clamp(2em, 5vw, 2.5em);
       color: white;
       margin: 0 0 10px 0;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -82,15 +83,34 @@
       max-width:1200px;
       margin: 0 auto;
       padding: 24px;
-      display:flex;
-      justify-content: space-between;
-      align-items:flex-start;
-      gap:24px;
     }
-    .sobre h2{ font-size:1.5rem; margin:0; }
+    .sobre h2{ font-size:1.5rem; margin:0; text-align: center;}
+    .sobre p{ text-align:center;}
+    
+    .sobre-conteudo{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .sobre-textos{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
     .icone{
-      width:120px; height:120px; background:#ccc;
-      flex:0 0 120px;
+      width:100%;
+      max-width:300px;
+      height:auto;
+      background:#ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .icone img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     /* GALERIA / CARROSSEL */
@@ -127,7 +147,7 @@
     }
 
     @keyframes deslizar {
-      0%   { transform: translateX(0); }
+      0%  { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
@@ -135,7 +155,7 @@
     .orcamento-btn-container {
       width: 100%;
       text-align: center;
-      margin-top: 40px;
+      margin: 40px 0;
     }
     .orcamento-btn {
       display: inline-block;
@@ -147,6 +167,9 @@
       border-radius: 5px;
       transition: background-color 0.3s;
     }
+    .orcamento-btn:hover{
+      background-color: #666;
+    }
 
     /* RODAPÉ / BARRA */
     footer{
@@ -156,8 +179,29 @@
       background: var(--bg-wire);
       border-radius:10px;
     }
-
+    
     /* RESPONSIVO */
+    @media (min-width: 768px){
+      .sobre-conteudo {
+        flex-direction: row-reverse; /* Inverte a ordem do flex */
+        justify-content: space-between;
+      }
+      .sobre-textos {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .sobre h2, .sobre p {
+        text-align: left;
+      }
+      .icone {
+        width: 120px;
+        height: 120px;
+        flex: 0 0 120px;
+        margin-left: 24px;
+      }
+      .faixa img { width: 220px; height: 300px; }
+    }
+    
     @media (max-width: 900px){
       .faixa img { width: 180px; height: 120px; }
     }
@@ -168,7 +212,6 @@
 </head>
 <body>
 
-  <!-- TOPO -->
   <header>
     <div class="header-inner">
       <h1 class="brand-logo">Belo Vidro</h1>
@@ -177,34 +220,32 @@
     </div>
   </header>
 
-  <!-- SOBRE O ÍCONE -->
   <section id="sobre" class="sobre">
     <h2>Sobre o ícone</h2>
-    <div>
-      <p>As Portas Maxsystem são o que há de melhor em tecnologia, segurança e design para sua casa.</p>
-      <p>O movimento em todas as direções é suave e silencioso, proporcionando conforto e praticidade.</p>
-      <p>Um design que se destaca pela elegância e funcionalidade.</p>
-    </div>
-    <div class="icone" aria-hidden="true">
-        <img src="Porta-de-correr-3.jpg" alt="portamaxsystem" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+    <div class="sobre-conteudo">
+      <div class="sobre-textos">
+        <p>As Portas Maxsystem são o que há de melhor em tecnologia, segurança e design para sua casa.</p>
+        <p>O movimento em todas as direções é suave e silencioso, proporcionando conforto e praticidade.</p>
+        <p>Um design que se destaca pela elegância e funcionalidade.</p>
+      </div>
+      <div class="icone" aria-hidden="true">
+          <img src="https://i.ibb.co/b1hQ9T7/Porta-de-correr-3.jpg" alt="portamaxsystem">
+      </div>
     </div>
   </section>
 
-  <!-- GALERIA / CARROSSEL -->
   <section class="galeria">
     <h3>Galeria</h3>
     <div class="carrossel">
       <div class="faixa">
-        <!-- imagens originais -->
-        <img src="images (1).jpg" alt="">
-        <img src="images (2).jpg" alt="">
-        <img src="images (3).jpg" alt="">
-        <img src="images (4).jpg" alt="">
-        <!-- cópia para loop -->
-        <img src="images (1).jpg" alt="">
-        <img src="images (2).jpg" alt="">
-        <img src="images (3).jpg" alt="">
-        <img src="images (4).jpg" alt="">
+        <img src="https://i.ibb.co/n6qKkGq/images-1.jpg" alt="">
+        <img src="https://i.ibb.co/3s3Q5wS/images-2.jpg" alt="">
+        <img src="https://i.ibb.co/hCj44Cg/images-3.jpg" alt="">
+        <img src="https://i.ibb.co/V9VdJ5f/images-4.jpg" alt="">
+        <img src="https://i.ibb.co/n6qKkGq/images-1.jpg" alt="">
+        <img src="https://i.ibb.co/3s3Q5wS/images-2.jpg" alt="">
+        <img src="https://i.ibb.co/hCj44Cg/images-3.jpg" alt="">
+        <img src="https://i.ibb.co/V9VdJ5f/images-4.jpg" alt="">
       </div>
     </div>
   </section>
@@ -213,7 +254,6 @@
     <a href="URL_DA_PAGINA_PRINCIPAL#secao-orcamento" class="orcamento-btn">FAZER ORÇAMENTO</a>
   </div>
 
-  <!-- RODAPÉ / BARRA -->
   <footer></footer>
 
 </body>
