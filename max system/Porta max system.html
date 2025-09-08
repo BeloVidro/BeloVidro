@@ -171,6 +171,38 @@
       background-color: #666;
     }
 
+    /* BOTÃO VOLTAR FLUTUANTE */
+    .floating-back-btn {
+        position: fixed; /* Fixa o botão na tela */
+        bottom: 20px; /* Distância da parte inferior */
+        right: 20px; /* Distância da parte direita */
+        background-color: rgba(0, 0, 0, 0.6); /* Fundo sutil e semi-transparente */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 50px; /* Forma de pílula/círculo para ser sutil */
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        z-index: 1000; /* Garante que ele fique acima de outros elementos */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .floating-back-btn:hover {
+        background-color: rgba(0, 0, 0, 0.8); /* Fundo mais escuro no hover */
+        transform: translateY(-2px); /* Efeito sutil de "levantar" */
+    }
+    /* Estilo para a seta (opcional, se quiser uma seta) */
+    .floating-back-btn::before {
+        content: '←'; /* Caractere de seta para a esquerda */
+        font-size: 1.2em;
+        line-height: 1;
+        margin-right: 5px;
+    }
+
+
     /* RODAPÉ / BARRA */
     footer{
       max-width:1200px;
@@ -229,7 +261,7 @@
         <p>Um design que se destaca pela elegância e funcionalidade.</p>
       </div>
       <div class="icone" aria-hidden="true">
-          <img src="Porta-de-correr-3.jpg" alt="portamaxsystem">
+          <img src="Porta-de-correr-3.jpg"" alt="portamaxsystem">
       </div>
     </div>
   </section>
@@ -255,6 +287,8 @@
   </div>
 
   <footer></footer>
+
+  <a href="javascript:history.back()" class="floating-back-btn"></a>
 
 </body>
 </html>
